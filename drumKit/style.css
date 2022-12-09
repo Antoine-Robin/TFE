@@ -9,16 +9,21 @@
 .drum-holder {
   display: flex;
   gap: 2em;
-  width: 40rem;
+  width: 35rem;
   flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
+  background: #3e3e3e;
+  padding: 2em;
 }
 
 .pad {
-  background: rebeccapurple;
-  width: 11rem;
-  height: 11rem;
+  background: #838383;
+  width: 9rem;
+  height: 9rem;
   text-align: center;
-  transition: ease-in-out 0.2s;
+  transition: ease-in-out 0.5s;
+  color: white;
 }
 
 .letter {
@@ -26,5 +31,8 @@
   font-weight: 800;
 }
 
-.pad:hover {
+.playing {
+  background: white;
+  color: #3e3e3e;
+  transform: scale(1.1);
 }

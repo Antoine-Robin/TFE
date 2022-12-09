@@ -53,14 +53,22 @@ for (const sound of sounds) {
 }
 
 function create_pad(key, label, src) {
-  return `<div class="pad"  > 
+  return `<div class="pad" data-key="${key}" > 
   <audio data-key="${key}" src="${src}"></audio>
-  <p class="letter"> ${key}  </p> <br><br>
+  <p class="letter"> ${key}  </p>
   <p class="soud" > ${label} </p> 
   </div>`;
 }
 
-document.addEventListener("keypress", (e) => {
+window.addEventListener("keypress", (e) => {
   let key = e.key;
-  let audio = document.querySelector(`[data-key="${key}"]`);
+  let audio = document.querySelector(`audio[data-key="${key}"]`);
+  let pad = document.querySelector(`div[data-key="${key}"]`);
+  if (!audio) return;
+  audio.play();
+  pad.classList.add("playing");
+
+  setTimeout(() => {
+    pad.classList.remove("playing");
+  }, audio.duration * 1000);
 });
