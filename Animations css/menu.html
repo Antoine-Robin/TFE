@@ -30,21 +30,37 @@
         margin-left: 10px;
       }
       .line {
-        border-top: 1px black solid;
+        border-top: 2px black solid;
         width: 100%;
+        transition: 0.3s;
       }
 
-      @keyframes burger-animation {
+      .change .line1 {
+        transform: translate(0, 12px) rotate(-45deg);
+      }
+
+      .change .line2 {
+        opacity: 0;
+      }
+
+      .change .line3 {
+        transform: translate(0, -12px) rotate(45deg);
       }
     </style>
   </head>
   <body>
     <div class="menu">
       <div class="burger">
-        <div class="line"></div>
-        <div class="line"></div>
-        <div class="line"></div>
+        <div class="line line1"></div>
+        <div class="line line2"></div>
+        <div class="line line3"></div>
       </div>
     </div>
+
+    <script>
+      document.querySelector(".burger").addEventListener("click", (e) => {
+        document.querySelector(".burger").classList.toggle("change");
+      });
+    </script>
   </body>
 </html>
