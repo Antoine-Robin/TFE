@@ -3,13 +3,13 @@ const drum_holder = document.getElementById("drum-holder");
 const sounds = [
   {
     key: "a",
-    label: "BounceKick",
-    src: "https://d7d3471nr939s.cloudfront.net/AstroTwist_Noiz_SP/MP3/One+Shots/BounceKick_SP_30_01.mp3?cb=8a344565-dec5-46bb-9686-0b0eaea70046",
+    label: "Kick_89_35",
+    src: "https://d7d3471nr939s.cloudfront.net/DubTechnoProgressions_Noiz_SP/MP3/One+Shots/Kick_89_35.mp3?cb=30402014-ec1c-4b29-b301-ed0d18f20187",
   },
   {
     key: "t",
     label: "NoiseKick",
-    src: "https://d7d3471nr939s.cloudfront.net/Vessel_Noiiz/MP3/One+Shots/Drums/Kicks/NoiseKick_04_694.mp3?cb=fd0bc032-e2de-4fdd-a075-35a6034b0a52",
+    src: "https://d7d3471nr939s.cloudfront.net/ThisIsBass_Noiiz/MP3/One+Shots/Drums/808s/E_808_07_667.mp3?cb=845e3b30-29a5-4803-b25b-bd38ba8ee1a1",
   },
   {
     key: "i",
@@ -17,7 +17,7 @@ const sounds = [
     src: "https://d7d3471nr939s.cloudfront.net/80sDrums_Noiz_SP/MP3/One+Shots/BD_Nova_1_SP.mp3?cb=fe588a51-113f-4a4b-9548-3ea0fce09cd2",
   },
   {
-    key: "t",
+    key: "m",
     label: "NoiseKick",
     src: "https://d7d3471nr939s.cloudfront.net/Vessel_Noiiz/MP3/One+Shots/Drums/Kicks/NoiseKick_04_694.mp3?cb=fd0bc032-e2de-4fdd-a075-35a6034b0a52",
   },
@@ -53,14 +53,23 @@ for (const sound of sounds) {
 }
 
 function create_pad(key, label, src) {
-  return `<div class="pad"  > 
+  return `<div class="pad" data-key="${key}" > 
   <audio data-key="${key}" src="${src}"></audio>
-  <p class="letter"> ${key}  </p> <br><br>
+  <p class="letter"> ${key.toUpperCase()}  </p>
   <p class="soud" > ${label} </p> 
   </div>`;
 }
 
-document.addEventListener("keypress", (e) => {
+window.addEventListener("keypress", (e) => {
   let key = e.key;
-  let audio = document.querySelector(`[data-key="${key}"]`);
+  let audio = document.querySelector(`audio[data-key="${key}"]`);
+  let pad = document.querySelector(`div[data-key="${key}"]`);
+  console.log(audio);
+  if (!audio) return;
+  audio.play();
+  pad.classList.add("playing");
+
+  setTimeout(() => {
+    pad.classList.remove("playing");
+  }, audio.duration * 1000);
 });
