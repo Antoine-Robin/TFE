@@ -1,0 +1,29 @@
+body {
+  display: flex;
+  justify-content: center;
+}
+
+img {
+  width: 300px;
+  text-align: center;
+  margin-top: 50px;
+}
+
+#game {
+  margin-top: 20%;
+}
+
+.test {
+  display: flex;
+  justify-content: center;
+}
+
+.placeholder {
+  width: 25px;
+  border-bottom: 1px black solid;
+  margin-right: 5px;
+}
+
+input {
+  margin-top: 30px;
+}
