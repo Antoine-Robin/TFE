@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <style>
+      body {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 100vh;
+        position: relative;
+      }
+
+      .modal {
+        display: none;
+        height: 100%;
+        width: 100%;
+        top: 0;
+        left: 0;
+        justify-content: center;
+        align-items: center;
+        position: fixed;
+        z-index: 1;
+        transition: ease-in-out 2s;
+        overflow: auto;
+      }
+      .modal-container {
+        justify-content: center;
+        flex-direction: column;
+        align-items: center;
+        width: 400px;
+        height: 225px;
+        position: fixed;
+        border: 1.5px purple solid;
+        text-align: center;
+      }
+
+      .modal-appear {
+        display: flex;
+      }
+    </style>
+    <title>modal</title>
+  </head>
+  <body>
+    <button class="modal-btn" id="modal">Open modal</button>
+
+    <div class="modal">
+      <div class="modal-container">
+        <h1>Titre modal</h1>
+        <p>
+          Lorem ipsum dolor sit amet consectetur adipisicing elit. Maiores vel
+          rerum, obcaecati provident corporis, totam eius laboriosam architecto
+          labore voluptatibus error nam eveniet aliquam laborum doloremque
+          corrupti hic aspernatur culpa!
+        </p>
+      </div>
+    </div>
+    <script>
+      document.getElementById("modal").addEventListener("click", (e) => {
+        document.querySelector(".modal").classList.add("modal-appear");
+      });
+    </script>
+  </body>
+</html>

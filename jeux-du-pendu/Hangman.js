@@ -113,17 +113,32 @@ class Hangman {
     this.line = this.db.random();
     this.word = this.line.word;
     this.t = new Word(this.word);
+    this.lives = 7;
   }
 
   start(string) {
     this.render(string);
   }
 
+  resetGame(message) {
+    alert(message);
+  }
   render(id) {
     let container = document.getElementById(id);
     let array = this.t.string.split("");
     let letterContainer = document.createElement("div");
+    let image = document.createElement("img");
+    image.src = "./assets/man.png";
+    let clue = document.createElement("p");
+    clue.innerHTML = "clue : " + this.line.clue;
+    let lives = document.createElement("p");
+    lives.innerHTML = "lives remaining: " + this.lives;
+    container.appendChild(image);
+    container.appendChild(clue);
+
     container.appendChild(letterContainer);
+    container.appendChild(lives);
+
     letterContainer.classList.add("test");
     array.forEach((letter) => {
       let guessPlaceholder = '<div class="placeholder">  </div>';
@@ -138,10 +153,26 @@ class Hangman {
 
     console.log(this.t);
 
+    let placeholders = document.querySelectorAll(".placeholder");
+    console.log(placeholders);
+
     input.addEventListener("keypress", (e) => {
+      let positions = this.t.positionsFor(e.key);
       if (array.includes(e.key)) {
-        console.log(this.t.positionsFor(e.key));
+        console.log(positions);
+        for (let i = 0; i < positions.length; ++i) {
+          placeholders[positions[i]].innerHTML = e.key;
+        }
+      } else {
+        --this.lives;
+        if (this.lives == 0) {
+          this.resetGame("you lost :(");
+        }
       }
+      lives.innerHTML = "lives remaining: " + this.lives;
+      setTimeout(() => {
+        input.value = "";
+      }, 1000);
     });
   }
 }
