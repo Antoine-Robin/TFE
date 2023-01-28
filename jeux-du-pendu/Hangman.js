@@ -122,13 +122,14 @@ class Hangman {
 
   resetGame(message) {
     alert(message);
+    window.location.reload();
   }
   render(id) {
     let container = document.getElementById(id);
     let array = this.t.string.split("");
     let letterContainer = document.createElement("div");
-    let image = document.createElement("img");
-    image.src = "./assets/man.png";
+    let image = document.createElement("div");
+    image.classList.add("hangman-img");
     let clue = document.createElement("p");
     clue.innerHTML = "clue : " + this.line.clue;
     let lives = document.createElement("p");
@@ -154,20 +155,30 @@ class Hangman {
     console.log(this.t);
 
     let placeholders = document.querySelectorAll(".placeholder");
-    console.log(placeholders);
+
+    let correctAswers = 0;
 
     input.addEventListener("keypress", (e) => {
       let positions = this.t.positionsFor(e.key);
+
       if (array.includes(e.key)) {
-        console.log(positions);
+        correctAswers += positions.length;
         for (let i = 0; i < positions.length; ++i) {
           placeholders[positions[i]].innerHTML = e.key;
         }
       } else {
         --this.lives;
+        let backgroundPos = 0 - 75 * (7 - this.lives);
+        let divImg = document.querySelector(".hangman-img");
+        console.log(backgroundPos);
+        divImg.style.backgroundPositionX = backgroundPos + "px";
         if (this.lives == 0) {
           this.resetGame("you lost :(");
         }
+      }
+
+      if (correctAswers == array.length) {
+        this.resetGame("you won :)");
       }
       lives.innerHTML = "lives remaining: " + this.lives;
       setTimeout(() => {

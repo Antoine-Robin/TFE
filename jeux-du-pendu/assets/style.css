@@ -4,10 +4,12 @@ body {
   font-size: 1.2rem;
 }
 
-img {
-  width: 300px;
-  text-align: center;
+.hangman-img {
+  background-image: url(./man.png);
   margin-top: 50px;
+  width: 75px;
+  height: 200px;
+  animation-name: hangman;
 }
 
 #game {
