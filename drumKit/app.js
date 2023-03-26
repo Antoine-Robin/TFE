@@ -64,7 +64,6 @@ window.addEventListener("keypress", (e) => {
   let key = e.key;
   let audio = document.querySelector(`audio[data-key="${key}"]`);
   let pad = document.querySelector(`div[data-key="${key}"]`);
-  console.log(audio);
   if (!audio) return;
   audio.play();
   pad.classList.add("playing");

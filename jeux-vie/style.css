@@ -1,0 +1,16 @@
+.board {
+  display: grid;
+  grid-template-columns: repeat(10, 1fr);
+  grid-template-rows: repeat(10, 1fr);
+  margin: 0 auto;
+  width: 39%;
+}
+.cell {
+  width: 50px;
+  border: 1px solid black;
+  height: 50px;
+}
+
+.alive {
+  background-color: black;
+}
